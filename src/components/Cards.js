@@ -10,28 +10,29 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 //import {BrowserRouter,Route,Link} from 'react-router-dom';
 //import ProductListing from "../ProductListing";
-import data, {Bought} from '../components/data';
+import datas, {Bought} from '../components/data';
 import { Link , navigate} from "gatsby";
 import { useStaticQuery, graphql } from 'gatsby';
 
 
-const styles = {
+export const styles = {
     card : {
         height : 350
     }
 }
 
 
-class Cards extends Component{
+export default class Cards extends Component{
 
     constructor(props){
         super(props);
         this.state = {
-            category:'eventCatogery',
-            action:'eventAction',
-            label:'eventLabel'
+        
         };
     };
+
+
+    // Another method which I tried but not working right now too so i remain the code here
 
     // data = useStaticQuery(
     //     graphql`
@@ -54,7 +55,7 @@ class Cards extends Component{
 
 
     handleSomething= () =>{
-        console.log('test')
+        console.log('test');
         this.analyticsEvents();
         this.handlePushData();
     };
@@ -66,24 +67,26 @@ class Cards extends Component{
     
     };
     
+    //Checking
     componentDidMount(){
-        console.log(this.props.data.allShopifyProduct.nodes[0].handle);
-      };
+        console.log('this');
+        console.log(this.props.data.allShopifyProduct);
+      }
 
 
     handlePushData = () => {
-        navigate('/ProductListing');
+        navigate(`/ProductListing`);
         //navigate(`/product/${this.props.data.allShopifyProduct.nodes[0].handle}/`);
         Bought.push({ImageLink: this.props.ImageLink, Title: this.props.Title , Price: this.props.Price});
     };
-
+ 
     render(){
 
-        const { classes } = this.props;
+        //const { classes } = this.props;
 
         return(
 
-            <Card className={classes.card}>
+            <Card /*className={classes.card}*/ >
                 <CardActionArea>
 
                     <CardMedia
@@ -95,7 +98,7 @@ class Cards extends Component{
 
                     <CardContent>
                     
-                    <Typography gutterBottom  component="h2">    {/*Why got component and the component inside card media is what*/}
+                    <Typography gutterBottom  component="h2"> 
                         {this.props.Title}
                     </Typography>
 
@@ -120,7 +123,7 @@ class Cards extends Component{
 
 
 export const query = graphql`
-query Quey{
+query  {
     allShopifyProduct {
       nodes {
         id
@@ -136,6 +139,6 @@ query Quey{
   }
 ` 
 
-export default withStyles(styles)(Cards);
+//export default withStyles(styles)(query)(Cards);
 
 

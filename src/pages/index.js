@@ -13,9 +13,10 @@ import { graphql } from "gatsby"
 
 export default class HomePage extends Component{
 
-  componentDidMount(){
-    console.log(this.props.data.allContentfulSecondTry.nodes[0].title);
-  }
+  // componentDidMount(){
+  //   //console.log(this.props.data.allShopifyProduct.nodes[0].handle)
+  //    console.log(this.props.data.allContentfulSecondTry.nodes[0].title);
+  // }
 
 
 
@@ -34,7 +35,7 @@ export default class HomePage extends Component{
                       {/* {console.log(this.props.data.allContentfulBlogPost.edges.node.author.id)} */}
                       {/*"History" is passed down by route*/}
 
-                      <Cards history={this.props.history}  ImageLink={books.ImageLink} Title={books.Title} Price={books.Price} />
+                      <Cards  ImageLink={books.ImageLink} Title={books.Title} Price={books.Price} />
                   </Grid>
               ))}            
           </Grid>
@@ -67,4 +68,22 @@ query MyQuery {
     }
   }
 }`
+
+
+// export const querry = graphql`
+// query Query{
+//     allShopifyProduct {
+//       nodes {
+//         id
+//         images {
+//           id
+//           originalSrc
+//         }
+//         title
+//         description
+//         handle
+//       }
+//     }
+//   }
+// ` 
 
